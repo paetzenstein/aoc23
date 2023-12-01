@@ -1,6 +1,6 @@
 def read_file(filename):
     try:
-        with open(filename, 'r') as file:
+        with open(filename, 'r', encoding="utf-8") as file:
             lines = [line.strip() for line in file.readlines()]
             return lines
 
@@ -17,7 +17,8 @@ def get_calibration_value(current_line):
     calibration_list = []
     reversed_line = "".join(current_line[::-1])
     calibration_numbers = ("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
-    reversed_calibration_numbers = ("eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin")
+    reversed_calibration_numbers = ("eno", "owt", "eerht", "ruof", "evif", "xis",
+                                    "neves", "thgie", "enin")
     # Getting first number
     for char in current_line:
         counter = 1
@@ -30,9 +31,8 @@ def get_calibration_value(current_line):
                     calibration_list.append(str(calibration_numbers.index(num) + 1))
                     break
             break
-        else:
-            current_line = current_line[counter:]
-            counter += 1
+        current_line = current_line[counter:]
+        counter += 1
     # Getting second number
     for char in reversed_line:
         counter = 1
@@ -45,9 +45,8 @@ def get_calibration_value(current_line):
                     calibration_list.append(str(reversed_calibration_numbers.index(num) + 1))
                     break
             break
-        else:
-            reversed_line = reversed_line[counter:]
-            counter += 1
+        reversed_line = reversed_line[counter:]
+        counter += 1
     # Return result as int
     return int(calibration_list[0] + calibration_list[1])
 

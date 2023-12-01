@@ -1,6 +1,6 @@
 def read_file(filename):
     try:
-        with open(filename, 'r') as file:
+        with open(filename, 'r', encoding="utf-8") as file:
             lines = [line.strip() for line in file.readlines()]
             return lines
 
@@ -15,7 +15,7 @@ def read_file(filename):
 
 def create_output_file(filename, output):
     try:
-        with open(filename, 'w') as file:
+        with open(filename, 'w', encoding="utf-8") as file:
             for lines in output:
                 file.write(lines)
     except Exception as error:
